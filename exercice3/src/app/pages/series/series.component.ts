@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TableOrderPipe } from '../../utils/pipes/table-order.pipe';
 
 @Component({
   selector: 'app-series',
@@ -13,4 +14,5 @@ export class SeriesComponent {
   deleteByIndex(index: number): void{
     this.series.splice(index, 1);
   }
+
 }
