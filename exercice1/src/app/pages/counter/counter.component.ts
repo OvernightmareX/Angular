@@ -9,15 +9,25 @@ import { Component } from '@angular/core';
   styleUrl: './counter.component.css'
 })
 export class CounterComponent {
-  color: string = "red"; 
+  color: string = "green"; 
   counter: number = 0; 
 
-  count(): void{
+  countUp(): void{
     this.counter++;
 
     if(this.counter % 2 == 0)
-      this.color = "red"; 
-    else 
       this.color = "green"; 
+    else 
+      this.color = "red"; 
   }
+
+  countDown(): void{
+    this.counter--;
+
+    if(this.counter % 2 == 0)
+      this.color = "green"; 
+    else 
+      this.color = "red"; 
+  }
+
 }
