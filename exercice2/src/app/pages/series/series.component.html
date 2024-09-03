@@ -1,0 +1,10 @@
+<h1>Exercice 2 : Séries</h1>
+
+<ul>
+    @for(s of series; track s; let i = $index){
+        <li>{{s}}  <button (click)="delete(i)">Supprimer</button></li>
+    }
+    @empty {
+        <h4>Il n'y a rien dans la liste.</h4>
+    }
+</ul>

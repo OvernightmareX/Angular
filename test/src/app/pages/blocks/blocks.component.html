@@ -1,0 +1,35 @@
+<h1>Les blocks</h1>
+
+<section>
+    <h2>Les blocks coditionnels</h2>
+
+    @if(!isLogged){
+        <div>
+            <h3>Vous n'êtes pas connecter. </h3>
+            <button (click)="toggleLogged()">Se connecter</button>
+        </div>
+    }
+    @else {
+        <div>
+            <h3>Bienvenue !!</h3>
+            <button (click)="toggleLogged()">Se déconnecter</button>
+        </div>
+    }
+</section>
+
+<section>
+    <h2>Les boucles</h2>
+
+    <ul>
+        @for(w of weapons; track w; let i = $index){
+            <li>A l'index : {{i}}/{{$count}}, j'ai {{w}}.</li>
+        }
+    </ul>
+</section>
+
+<section>
+    <h2>Les variables de template</h2>
+
+    @let name = user.name; 
+    <h4>Username = {{name}}</h4>
+</section>
