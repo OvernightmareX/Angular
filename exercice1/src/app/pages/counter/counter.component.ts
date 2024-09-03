@@ -12,22 +12,8 @@ export class CounterComponent {
   color: string = "green"; 
   counter: number = 0; 
 
-  countUp(): void{
-    this.counter++;
-
-    if(this.counter % 2 == 0)
-      this.color = "green"; 
-    else 
-      this.color = "red"; 
+  count(isUp: boolean): void{
+    isUp ? this.counter++ : this.counter--;
+    this.color = this.counter % 2 == 0 ? "green" : "red"; 
   }
-
-  countDown(): void{
-    this.counter--;
-
-    if(this.counter % 2 == 0)
-      this.color = "green"; 
-    else 
-      this.color = "red"; 
-  }
-
 }
