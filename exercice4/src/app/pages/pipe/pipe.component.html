@@ -1,0 +1,16 @@
+<h1>Exercice 3 : Pipes</h1>
+
+<ul>
+
+    @for(s of series | tableOrder: order; track s; let i = $index){
+        <li>{{s}}</li>
+    }
+    @empty {
+        <h4>Il n'y a rien dans la liste.</h4>
+    }
+
+    <br>
+
+    <button (click)="order = 'Asc'">Tableau Asc</button>
+    <button (click)="order = 'Desc'">Tableau Desc</button>
+</ul>
