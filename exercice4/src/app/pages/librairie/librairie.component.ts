@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { Book } from '../../model/book';
 import { ReadedPipe } from '../../utils/pipes/readed.pipe';
-import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-librairie',
   standalone: true,
-  imports: [ReadedPipe, NgStyle],
+  imports: [ReadedPipe],
   templateUrl: './librairie.component.html',
   styleUrl: './librairie.component.css'
 })
@@ -20,4 +19,5 @@ export class LibrairieComponent {
   toggleRead(index: number){
     this.library[index].isRead = !this.library[index].isRead;
   }
+
 }
