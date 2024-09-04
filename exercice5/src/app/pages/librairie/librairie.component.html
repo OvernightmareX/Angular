@@ -1,0 +1,41 @@
+<h1>Exercice 4/5 : Libairie</h1>
+
+<ul>
+
+    @for(b of library ; track b; let i = $index){
+        <li>
+            <span [class]="b.isRead ? 'underline' : ''" >{{b.title}}</span> de {{b.author}} 
+            <button (click)="b.isRead = !b.isRead">{{b.isRead | readed}}</button>
+        </li>
+    }
+    @empty {
+        <h4>Il n'y a rien dans la bibliothèque.</h4>
+    }
+
+</ul>
+
+<section>
+    <h3>Ajouter un livre</h3>
+
+    <form (ngSubmit)="submitBook()">
+        <p>
+            <label for="title">Titre :</label>
+            <input type="text" name="title" id="title" [(ngModel)]="newBook.title">
+            @if(titleIsEmpty){
+                <small class="error">Titre est obligatoire !</small>
+            }
+        </p>
+        <p>
+            <label for="author">Auteur :</label>
+            <input type="text" name="author" id="author" [(ngModel)]="newBook.author">
+            @if(authorIsEmpty){
+                <small class="error">Autheur est obligatoire !</small>
+            }
+        </p>
+        <p>
+            <button>Ajouter</button>
+        </p>
+    </form>
+</section>
+
+
