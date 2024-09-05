@@ -32,3 +32,65 @@
         </p>
     </form>
 </section>
+
+<section>
+    <h2>Reactive forms</h2>
+
+    <form (ngSubmit)="saveBook()">
+        <p>
+            <label for="title">Titre :</label>
+            <input type="text" name="title" id="title" [formControl]="book_control">
+        </p>
+        @if(book_control.invalid && book_control.dirty){
+            @if(book_control.hasError('required')){
+                <small class="error">Champs vide !!</small>
+            }
+            @if(book_control.hasError('minlength')){
+                <small class="error">Trop court !!</small>
+            }
+        }
+        <p>
+            <button>Save</button>
+        </p>
+    </form>
+</section>
+
+<section>
+    <h2>Les forms group</h2>
+
+    <form [formGroup]="formation_form" (ngSubmit)="saveFormation()">
+        <p>
+            <label for="intitule">Intitule</label>
+            <input type="text" id="intitule" formControlName="intitule">
+            @if(intitule.hasError('required')){
+                <small class="error">Champs vide !!</small>
+            }
+        </p>
+        <fieldset formGroupName="trainer">
+            <legend>Formateur</legend>
+            <p>
+                <label for="firstname">Prenom : </label>
+                <input type="text" id="firstname" formControlName="firstname">
+            </p>
+            <p>
+                <label for="lastname">Nom : </label>
+                <input type="text" id="lastname" formControlName="lastname">
+            </p>
+        </fieldset>
+        <fieldset formArrayName="modules">
+            <legend>Modules</legend>
+            @for(control of modules.controls; track control){
+                <p>
+                    <label [for]="'module' + $index">Module : {{$index + 1}} </label>
+                    <input type="text" [id]="'module' + $index" [formControlName]="$index">
+                </p>
+            }
+            <button (click)="addModule()" type="button">
+                Add module
+            </button>
+        </fieldset>
+        <button>
+            Gros bouton rouge ! 
+        </button>
+    </form>
+</section>

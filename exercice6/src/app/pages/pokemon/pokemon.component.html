@@ -1,0 +1,78 @@
+<h1>Pokemon maker !!</h1>
+
+<section>
+    <form [formGroup]="pokemon_form" (ngSubmit)="savePokemon()">
+        <p>
+            <label for="name">Nom : </label>
+            <input type="text" id="name" formControlName="name">
+            @if(name.hasError('required')){
+                <small class="error">Le nom ne peut pas être vide !</small>
+            }
+        </p>
+
+        <p>
+            <label for="description">Description : </label>
+            <input type="text" id="description" formControlName="description">
+            @if(description.hasError('required')){
+                <small class="error">La description ne peut pas être vide !</small>
+            }
+        </p>
+
+        <fieldset formArrayName="types">
+            <legend>Select types : </legend>
+
+            @for(type of types.controls; track type; let i = $index){
+                <select formControlName={{i}}>
+                    @for(element of pokemonTypes; track element){
+                        <option [value]="element">{{ element }}</option>
+                    }
+                </select>
+            }
+
+            <button (click)="addType()" type="button">
+                Add Type
+            </button>
+        </fieldset>
+
+        <fieldset formArrayName="attacks">
+            <legend>Attaques</legend>
+            @for(attack of attacks.controls; track attack; let i = $index){
+                <fieldset formGroupName={{i}}>
+                    <legend>Attaque n°{{i + 1}}</legend>
+                    <p>
+                        <label for="nameAttack">Nom de l'attaque : </label>
+                        <input type="text" id="nameAttack" formControlName="nameAttack">
+                    </p>
+                    <p>
+                        <label for="descriptionAttack">Description de l'attaque : </label>
+                        <input type="text" id="descriptionAttack" formControlName="descriptionAttack">
+                    </p>
+                    <p>
+                        <label for="damage">Degat de l'attaque : </label>
+                        <input type="number" id="damage" formControlName="damage">
+                    </p>
+                </fieldset>
+                <br>
+            }
+            <button (click)="addAttack()" type="button">
+                Add attack
+            </button>
+        </fieldset>
+
+        <fieldset formGroupName="zone">
+            <legend>Zone : </legend>
+            <p>
+                <label for="areaName">Nom de la zone : </label>
+                <input type="text" id="areaName" formControlName="areaName">
+            </p>
+            <p>
+                <label for="areaRegionName">Nom de la region : </label>
+                <input type="text" id="areaRegionName" formControlName="areaRegionName">
+            </p>
+        </fieldset>
+        <button>
+            Save pokemon
+        </button>
+
+    </form>
+</section>
