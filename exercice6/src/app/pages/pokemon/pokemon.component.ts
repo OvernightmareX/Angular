@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { typePokemon } from '../../model/pokemon';
+import { Pokemon, typePokemon } from '../../model/pokemon';
+import { PokemonCardComponent } from "../../components/pokemon-card/pokemon-card.component";
 
 @Component({
   selector: 'app-pokemon',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, PokemonCardComponent],
   templateUrl: './pokemon.component.html',
   styleUrl: './pokemon.component.css'
 })
@@ -13,15 +14,21 @@ export class PokemonComponent {
   message: string = ""; 
 
   isSubmitted = false; 
+  pokemons: Pokemon[] = []; 
 
   pokemonTypes = Object.values(typePokemon);
+
+  constructor(){
+    let stored = localStorage.getItem('pokemons')
+  
+    if(stored)
+      this.pokemons = JSON.parse(stored); 
+  }
 
   pokemon_form = new FormGroup({
     name: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
-    types: new FormArray([
-      new FormControl()
-    ]),
+    types: new FormControl([]),
     attacks: new FormArray([
       new FormGroup({
         nameAttack: new FormControl(""), 
@@ -57,7 +64,8 @@ export class PokemonComponent {
 
   savePokemon(){
     if(this.pokemon_form.valid){
-      console.log("Pokemon saved", this.pokemon_form.value);
+      this.pokemons.push(this.pokemon_form.value as unknown as Pokemon);
+      localStorage.setItem('pokemons', JSON.stringify(this.pokemons));
       this.pokemon_form.reset(); 
     }
   }
@@ -70,8 +78,9 @@ export class PokemonComponent {
     }));
   }
 
-  addType(){
-    this.types.push(new FormControl()); 
+  deletePokemon(pokemonToDelete: Pokemon){
+    let index = this.pokemons.indexOf(pokemonToDelete); 
+    this.pokemons.splice(index, 1);
   }
 
 }

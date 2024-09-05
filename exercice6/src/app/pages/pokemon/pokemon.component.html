@@ -18,20 +18,15 @@
             }
         </p>
 
-        <fieldset formArrayName="types">
+        <fieldset>
             <legend>Select types : </legend>
 
-            @for(type of types.controls; track type; let i = $index){
-                <select formControlName={{i}}>
-                    @for(element of pokemonTypes; track element){
-                        <option [value]="element">{{ element }}</option>
-                    }
-                </select>
-            }
+            <select multiple formControlName="types" style="width: 25vw;">
+                @for(element of pokemonTypes; track element){
+                    <option [value]="element">{{ element }}</option>
+                }
+            </select>
 
-            <button (click)="addType()" type="button">
-                Add Type
-            </button>
         </fieldset>
 
         <fieldset formArrayName="attacks">
@@ -73,6 +68,17 @@
         <button>
             Save pokemon
         </button>
-
     </form>
 </section>
+
+@if(pokemons.length > 0){
+    <hr>
+    <h1>Pokemon enregistré : </h1>
+
+    <section class="grid" id="allCard">
+        @for(poke of pokemons; track poke){
+            <app-pokemon-card [poke]="poke" (pokeToDelete)="deletePokemon($event)"></app-pokemon-card>
+        }
+    </section>
+
+}

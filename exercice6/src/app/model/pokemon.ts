@@ -1,17 +1,17 @@
-export interface pokemon{
+export interface Pokemon{
     name: string, 
     description: string, 
     types: typePokemon[], 
-    attacks: attack[],
-    zone: area
+    attacks: Attack[],
+    zone: Area
 }
 
-export interface area{
+export interface Area{
     areaName: string, 
     areaRegionName: string
 }
 
-export interface attack{
+export interface Attack{
     nameAttack: string, 
     descriptionAttack: string, 
     damage: number
