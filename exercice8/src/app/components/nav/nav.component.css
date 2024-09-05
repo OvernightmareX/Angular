@@ -1,0 +1,16 @@
+nav {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    background-color: rgba(255, 233, 39, 0.705);
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+    gap: 20px;
+    padding: 20px 0;
+}
