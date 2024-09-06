@@ -1,0 +1,64 @@
+<h1>Roller maker !!</h1>
+
+<section>
+    <form [formGroup]="rollerForm" (ngSubmit)="submitRoller()">
+
+        <p>
+            <label for="name">Nom des rollers : </label>
+            <input type="text" id="name" formControlName="name">
+            @if(name.hasError('required')){
+                <small class="error">Le nom ne peut pas être vide !</small>
+            }
+        </p>
+
+        <p>
+            <label for="imageUrl">Url de l'image des rollers : </label>
+            <input type="text" id="imageUrl" formControlName="imageUrl">
+        </p>
+
+        <p>
+            <label for="size">Taille des rollers : </label>
+            <input type="number" id="size" formControlName="size">
+            @if(size.hasError('min')){
+                <small class="error">La taille ne peut pas être inférieur à 16 !</small>
+            }
+        </p>
+
+        <p>
+            <label for="price">Prix des rollers : </label>
+            <input type="number" id="price" formControlName="price">
+            @if(price.hasError('min')){
+                <small class="error">Le prix ne peut pas être négatif !</small>
+            }
+        </p>
+
+        <fieldset formArrayName="color">
+            <legend>Quelles couleurs : </legend>
+
+            @for(c of color.controls; track c; let i = $index){
+                <div>
+                    <label [for]="'color' + i">Couleur n°{{i+1}}</label>
+                    <input type="text" [id]="'color' + i" formControlName={{i}}>
+                    @if(c.hasError('required')){
+                        <small class="error">La couleurs ne peut pas être vide !</small>
+                    }
+                </div>
+            }
+            <button type="button" (click)="addColor()">
+                Ajouter une couleur
+            </button>
+        </fieldset>
+
+        <p>
+            <label for="nbWheel">Nombre de roulettes : </label>
+            <input type="number" id="nbWheel" formControlName="nbWheel">
+            @if(price.hasError('min')){
+                <small class="error">Le nombre minimum de roulettes est de 2 !</small>
+            }
+        </p>
+
+        <button type="submit">
+            Save roller
+        </button>
+    </form>
+</section>

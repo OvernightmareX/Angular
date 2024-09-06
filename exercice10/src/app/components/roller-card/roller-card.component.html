@@ -1,0 +1,18 @@
+<div class="roller-card">
+    <img src="{{roller.imageUrl}}" alt="Image de {{roller.name}}" class="roller-image">
+    <div class="roller-info">
+        <h2 class="roller-name">{{roller.name}}</h2>
+        <p class="roller-size">Taille : {{roller.size}}</p>
+        <p class="roller-price">Prix : {{roller.price}} €</p>
+        <p class="roller-color">Couleurs :
+            @for(color of roller.color; track color; let i = $index){
+                <span class="color-box" [style.background-color]="color"></span>
+                @if(i < roller.color.length - 1){
+                    <span>,</span>
+                }
+            }
+        </p>
+        <p class="roller-wheels">Nombre de roulettes : {{roller.nbWheel}}</p>
+        <button class="btn-add-cart">Ajouter au panier</button>
+    </div>
+</div>

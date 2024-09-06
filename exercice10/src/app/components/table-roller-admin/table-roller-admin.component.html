@@ -1,0 +1,28 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Image</th>
+            <th scope="col">Taille</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Couleur</th>
+            <th scope="col">Nb roulettes</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(roller of rollerInShopTable; track roller){
+            <tr>
+                <th scope="row">{{roller.id}}</th>
+                <td>{{roller.name}}</td>
+                <td>{{roller.imageUrl}}</td>
+                <td>{{roller.size}}</td>
+                <td>{{roller.price}}</td>
+                <td>{{roller.color}}</td>
+                <td>{{roller.nbWheel}}</td>
+                <td><button (click)="deleteRoller(roller.id)">Supprimer</button></td>
+            </tr>
+        }
+    </tbody>
+</table>
