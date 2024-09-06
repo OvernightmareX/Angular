@@ -81,7 +81,6 @@ export class PokemonComponent {
   deletePokemon(pokemonToDelete: Pokemon){
     let index = this.pokemons.indexOf(pokemonToDelete); 
     this.pokemons.splice(index, 1);
-    localStorage.setItem('pokemons', JSON.stringify(this.pokemons));
   }
 
 }
