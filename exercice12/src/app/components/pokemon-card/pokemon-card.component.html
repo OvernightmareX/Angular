@@ -1,0 +1,21 @@
+<article class="card">
+    <h2>{{poke?.name}}</h2>
+    <p>{{poke?.description}}</p>
+    <p>{{poke?.name}} est un pokemon de type : 
+        @for(type of poke?.types; track type){
+            <span>{{type}}</span>
+        }
+    </p>
+    <h2>C'est attaques sont : </h2>
+    @for(attack of poke?.attacks; track attack){
+        <p>Nom de l'attaque : {{attack.nameAttack}}</p>
+        <p>Description : {{attack.descriptionAttack}}</p>
+        <p>Degat : {{attack.damage}}</p>
+    }
+    <h2>Il vit : </h2>
+    <p>Il vit à {{poke?.zone?.areaName}} dans la région de {{poke?.zone?.areaRegionName}}</p>
+    <button (click)="deletePokemon()">Delete card</button>
+    <p>
+        <button (click)="addToPokedex()">Add to pokedex</button>
+    </p>
+</article>
