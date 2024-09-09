@@ -1,0 +1,15 @@
+<h1>Pokedex</h1>
+<section class="grid" id="allCard">
+    @for(pokemon of pokedex; track pokemon){
+        <article class="card">
+            <h2>{{pokemon.name}}</h2>
+            <p>{{pokemon.description}}</p>
+            <p>{{pokemon.name}} est un pokemon de type : 
+                @for(type of pokemon?.types; track type){
+                    <span>{{type}}</span>
+                }
+            </p>
+            <button (click)="removeFromPokedex(pokemon)">Delete from pokedex</button>
+        </article>
+    }
+</section>
