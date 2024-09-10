@@ -1,18 +1,26 @@
 <div class="roller-card">
-    <img src="{{roller.imageUrl}}" alt="Image de {{roller.name}}" class="roller-image">
+    <img src="{{roller.imageUrl === '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNNLEL-qmmLeFR1nxJuepFOgPYfnwHR56vcw&s' : roller.imageUrl}}" alt="Image de {{roller.name}}" class="roller-image">
     <div class="roller-info">
         <h2 class="roller-name">{{roller.name}}</h2>
         <p class="roller-size">Taille : {{roller.size}}</p>
         <p class="roller-price">Prix : {{roller.price}} €</p>
         <p class="roller-color">Couleurs :
             @for(color of roller.color; track color; let i = $index){
-                <span class="color-box" [style.background-color]="color"></span>
+                <span> {{ color }} </span>
                 @if(i < roller.color.length - 1){
                     <span>,</span>
                 }
             }
         </p>
         <p class="roller-wheels">Nombre de roulettes : {{roller.nbWheel}}</p>
-        <button class="btn-add-cart">Ajouter au panier</button>
+
+        <form [formGroup]="form" (ngSubmit)="submitToCart()">
+          <p><input type="number" formControlName="quantity" [max]="roller.stock" min="1"></p>
+          @if(quantity.hasError('max')) {
+            <p><small class="error">La quantité maximum est de {{ roller.stock }} !</small></p>
+          }
+          <p><button class="btn-add-cart" [disabled]="getMaxQuantity() == 0">Ajouter au panier</button></p>
+        </form>
+
     </div>
 </div>

@@ -57,6 +57,14 @@
             }
         </p>
 
+        <p>
+          <label for="stock">Quantité en stock : </label>
+          <input type="number" id="stock" formControlName="stock">
+          @if(price.hasError('min')){
+            <small class="error">Le nombre minimum de stock est 0 !</small>
+          }
+        </p>
+
         <button type="submit">
             Save roller
         </button>

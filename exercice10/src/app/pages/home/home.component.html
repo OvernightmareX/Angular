@@ -1,3 +1,16 @@
-@for(roller of allRoller; track roller){
-    <!-- <app-roller-card [roller]={{roller}}></app-roller-card> -->
-}
+<p>
+  <select (change)="handleSelect($event)">
+    <option value="ASC">Prix ASC</option>
+    <option value="DESC">Prix DESC</option>
+  </select>
+  <input placeholder="Entrez le nom de l'article" (input)="handleInput($event)">
+</p>
+<div class="grid">
+
+  @for(row of displayRoller; track row){
+    <app-roller-card [roller]=row.roller></app-roller-card>
+  }
+
+
+</div>
+

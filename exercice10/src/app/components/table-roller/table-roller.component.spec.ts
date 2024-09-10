@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableRollerAdminComponent } from './table-roller-admin.component';
+import { TableRollerComponent } from './table-roller.component';
 
 describe('TableRollerAdminComponent', () => {
-  let component: TableRollerAdminComponent;
-  let fixture: ComponentFixture<TableRollerAdminComponent>;
+  let component: TableRollerComponent;
+  let fixture: ComponentFixture<TableRollerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TableRollerAdminComponent]
+      imports: [TableRollerComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TableRollerAdminComponent);
+    fixture = TestBed.createComponent(TableRollerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

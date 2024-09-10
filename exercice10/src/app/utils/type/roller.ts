@@ -1,9 +1,10 @@
 export interface Roller {
   id: number,
-  name: string, 
-  imageUrl: string, 
+  name: string,
+  imageUrl: string,
   size: number,
   price: number,
   color: string[],
-  nbWheel: number
+  nbWheel: number,
+  stock: number,
 }

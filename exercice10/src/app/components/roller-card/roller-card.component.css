@@ -47,15 +47,6 @@
     margin-bottom: 8px;
 }
 
-/* Color Box for the roller colors */
-.color-box {
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    margin-right: 5px;
-    border: 1px solid #333;
-}
-
 /* Button */
 .btn-add-cart {
     background-color: #ff7043;
@@ -72,7 +63,11 @@
     background-color: #f4511e;
 }
 
-/* Responsive Design */
+.btn-add-cart:disabled {
+  background-color: grey;
+}
+
+
 @media (max-width: 768px) {
     .roller-card {
         max-width: 100%;

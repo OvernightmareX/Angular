@@ -1,0 +1,40 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Image</th>
+            <th scope="col">Taille</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Couleur</th>
+            <th scope="col">Nb roulettes</th>
+            <th scope="col">Quantité</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(cartRow of cartRowInTable; track cartRow){
+            <tr>
+                <th scope="row">{{cartRow.roller.id}}</th>
+                <td>{{cartRow.roller.name}}</td>
+                <td>{{cartRow.roller.imageUrl}}</td>
+                <td>{{cartRow.roller.size}}</td>
+                <td>{{cartRow.roller.price}}</td>
+                <td>{{cartRow.roller.color}}</td>
+                <td>{{cartRow.roller.nbWheel}}</td>
+              @if(view === "admin") {
+                <td>{{cartRow.roller.stock}}</td>
+              } @else {
+                <td>{{ cartRow.quantity }}</td>
+              }
+
+              @if(view === "admin") {
+                <td><button (click)="deleteRollerFromShop(cartRow.roller.id)">Supprimer</button></td>
+              } @else {
+                <td><button (click)="deleteRollerFromCart(cartRow.roller.id)">Retirer du panier</button></td>
+              }
+
+            </tr>
+        }
+    </tbody>
+</table>
